@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,7 @@ class AdminTable extends StatelessWidget {
           )
         ],
         color: Colors.white38.withOpacity(.6),
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
       child: Column(
         children: [
@@ -59,9 +60,27 @@ class AdminTable extends StatelessWidget {
                   ],
                 ),
                 if (additionState == true)
-                  Icon(
-                    Icons.add,
-                    color: Colors.black.withOpacity(.5),
+                  GestureDetector(
+                    onTap: () {
+                      /// TODO need to know which table i need to add data then add specific data in it
+
+                      CollectionReference users =
+                          FirebaseFirestore.instance.collection('users');
+
+                      users
+                          .add({
+                            'full_name': "amr", // John Doe
+                            'company': "ccc", // Stokes and Sons
+                            'age': 20 // 42
+                          })
+                          .then((value) => print("User Added"))
+                          .catchError(
+                              (error) => print("Failed to add user: $error"));
+                    },
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.black.withOpacity(.5),
+                    ),
                   ),
               ],
             ),

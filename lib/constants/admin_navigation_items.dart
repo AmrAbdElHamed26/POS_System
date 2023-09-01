@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pos_system/admin_module/presentation_layer/screens/account_screen.dart';
-import 'package:pos_system/admin_module/presentation_layer/screens/home_screen.dart';
-import 'package:pos_system/admin_module/presentation_layer/screens/menue_screen.dart';
-import 'package:pos_system/admin_module/presentation_layer/screens/notes_screen.dart';
-import 'package:pos_system/admin_module/presentation_layer/screens/reports_screen.dart';
-import 'package:pos_system/admin_module/presentation_layer/screens/staff_screen.dart';
-import 'package:pos_system/admin_module/presentation_layer/screens/tutorial_screen.dart';
+
+import '../admin_module/presentation_layer/screens/account_screen.dart';
+import '../admin_module/presentation_layer/screens/home_screen.dart';
+import '../admin_module/presentation_layer/screens/menue_screen.dart';
+import '../admin_module/presentation_layer/screens/notes_screen.dart';
+import '../admin_module/presentation_layer/screens/reports_screen.dart';
+import '../admin_module/presentation_layer/screens/staff_screen.dart';
+import '../admin_module/presentation_layer/screens/tutorial_screen.dart';
 
 
 class AdminNavigationItem {
