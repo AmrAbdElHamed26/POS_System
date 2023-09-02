@@ -1,10 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/admin_navigation_items.dart';
+import '../controller/admin_bloc.dart';
 
-class AdminNavigationBar extends StatelessWidget {
-  const AdminNavigationBar({Key? key}) : super(key: key);
+class AdminNavigationBar extends StatefulWidget {
+  AdminNavigationBar({Key? key}) : super(key: key);
+
+  @override
+  State<AdminNavigationBar> createState() => _AdminNavigationBarState();
+}
+
+class _AdminNavigationBarState extends State<AdminNavigationBar> {
+  int pressedIcon = 0 ;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +59,12 @@ class AdminNavigationBar extends StatelessWidget {
                     child: GestureDetector(
                       onTap: (){
 
-                        /// TODO : when press any icon change the color and change the page
+                        /// TODO : when press any icon change the color
+                        BlocProvider.of<AdminBloc>(context).add(ChangePageEvent(pageNumber: index));
+                        pressedIcon=index;
+                        setState(() {
+
+                        });
 
                       },
                       child: SizedBox(
@@ -60,6 +74,8 @@ class AdminNavigationBar extends StatelessWidget {
                           children: [
                             Icon(
                               adminNavigationItems[index].icon,
+                              color: pressedIcon == index ? Colors.red : Colors.black,
+
                             ),
                             Text(
                               screenWidth > 800 ? adminNavigationItems[index].name : "",
