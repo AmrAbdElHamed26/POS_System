@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../admin_module/presentation_layer/screens/account_screen.dart';
-import '../admin_module/presentation_layer/screens/home_screen.dart';
+import '../admin_module/home_feature/presentation_layer/home_screen.dart';
 import '../admin_module/presentation_layer/screens/menue_screen.dart';
 import '../admin_module/presentation_layer/screens/notes_screen.dart';
 import '../admin_module/presentation_layer/screens/reports_screen.dart';

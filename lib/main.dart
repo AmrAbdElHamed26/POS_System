@@ -1,13 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_proj/services/services_locator.dart';
 import 'package:side_proj/shared/bloc_observer.dart';
 import 'admin_module/admin_screen.dart';
-import 'admin_module/presentation_layer/controller/admin_bloc.dart';
 import 'firebase_options.dart';
 
 void main() async {
   Bloc.observer = MyBlocObserver();
+  ServicesLocator().init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
