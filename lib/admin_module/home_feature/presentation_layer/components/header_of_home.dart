@@ -5,24 +5,41 @@ import 'package:side_proj/admin_module/home_feature/presentation_layer/controlle
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_states.dart';
 
 class HeaderOfAdminHome extends StatelessWidget {
-  const HeaderOfAdminHome({Key? key, required this.screenWidth}) : super(key: key);
+  const HeaderOfAdminHome({Key? key, required this.screenWidth})
+      : super(key: key);
 
-  final screenWidth ;
+  final screenWidth;
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AdminHomeBloc,AdminHomeStates>(
-      buildWhen :(previous, current)=>previous.timeAndDateStates != current.timeAndDateStates ,
-      builder: (BuildContext context , AdminHomeStates state){
+    return BlocBuilder<AdminHomeBloc, AdminHomeStates>(
+      buildWhen: (previous, current) =>
+          previous.timeAndDateStates != current.timeAndDateStates,
+      builder: (BuildContext context, AdminHomeStates state) {
         print("date is ${state.timeAndDate}");
+        print("name is ${state.userName}");
+
         /// solve date error
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [Text(
-            /// TODO change name with name of restaurant
-            "Welcome back , Yousef",
-            style: TextStyle(
-                fontSize: 15, color: Colors.black.withOpacity(.6)),
-          ),
+          children: [
+            BlocBuilder<AdminHomeBloc, AdminHomeStates>(
+                buildWhen: (previous, current) =>
+                    previous.userNameStates != current.userNameStates,
+                builder: (BuildContext context, AdminHomeStates state) {
+                  switch (state.userNameStates) {
+                    case RequestState.loading:
+                      return const CircularProgressIndicator();
+                    case RequestState.loaded:
+                      return Text(
+                        "Welcome back , ${state.userName}",
+                        style: TextStyle(
+                            fontSize: 15, color: Colors.black.withOpacity(.6)),
+                      );
+                    case RequestState.error:
+                      return const CircularProgressIndicator();
+                  }
+                }),
             const SizedBox(
               height: 12,
             ),
@@ -77,7 +94,7 @@ class HeaderOfAdminHome extends StatelessWidget {
                   color: Colors.grey.withOpacity(.6),
                   size: 20,
                 ),
-
+                const SizedBox(width: 5),
                 Text(
                   state.timeAndDate,
                   style: TextStyle(
@@ -89,10 +106,10 @@ class HeaderOfAdminHome extends StatelessWidget {
             ),
             const SizedBox(
               height: 12,
-            ),],
+            ),
+          ],
         );
       },
-
     );
   }
 }

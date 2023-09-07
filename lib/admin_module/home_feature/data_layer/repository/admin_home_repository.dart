@@ -16,4 +16,12 @@ class AdminHomeRepository extends BaseAdminHomeRepository{
 
   }
 
+  @override
+  Future<String> getUserName() async {
+
+    final result = await baseAdminHomeRemoteDataSource.getUserName();
+
+    return result ;
+  }
+
 }

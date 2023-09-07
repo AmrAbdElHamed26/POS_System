@@ -14,7 +14,9 @@ class AdminHomeScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return BlocProvider(
-      create: (BuildContext context) => getIt<AdminHomeBloc>()..add(GetTimeAndDateUsingTimeStampEvent()),
+      create: (BuildContext context) => getIt<AdminHomeBloc>()
+        ..add(GetTimeAndDateUsingTimeStampEvent())
+        ..add(GetUserNameEvent()),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Padding(
@@ -25,9 +27,7 @@ class AdminHomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               HeaderOfAdminHome(screenWidth: screenWidth),
-
               const AdminHomeAllTables(),
             ],
           ),

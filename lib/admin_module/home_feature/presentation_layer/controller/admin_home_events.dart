@@ -8,3 +8,5 @@ abstract class AdminHomeEvents extends Equatable {
 }
 
 class GetTimeAndDateUsingTimeStampEvent extends AdminHomeEvents {}
+
+class GetUserNameEvent extends AdminHomeEvents {}
