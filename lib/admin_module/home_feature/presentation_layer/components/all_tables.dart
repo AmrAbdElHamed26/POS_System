@@ -18,7 +18,9 @@ class AdminHomeAllTables extends StatelessWidget {
                 currentIcon: Icons.speaker_notes_outlined,
                 data: data,
                 tableName: "Quick Notes",
-                additionState: true),
+                additionState: true,
+              numberOftable: 1,
+            ),
             const SizedBox(
               width: 15,
             ),
@@ -26,11 +28,13 @@ class AdminHomeAllTables extends StatelessWidget {
                 currentIcon: Icons.timer_outlined,
                 data: data,
                 tableName: "Current Orders",
-                additionState: false),
+                additionState: false,
+            numberOftable: 2,),
             const SizedBox(
               width: 15,
             ),
             AdminTable(
+              numberOftable: 3,
                 currentIcon: Icons.table_restaurant_outlined,
                 data: data,
                 tableName: "Tables",

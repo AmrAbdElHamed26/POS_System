@@ -16,7 +16,7 @@ class AdminHomeScreen extends StatelessWidget {
     return BlocProvider(
       create: (BuildContext context) => getIt<AdminHomeBloc>()
         ..add(GetTimeAndDateUsingTimeStampEvent())
-        ..add(GetUserNameEvent()),
+        ..add(GetUserNameEvent())..add(GetAllNotesEvent()),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Padding(

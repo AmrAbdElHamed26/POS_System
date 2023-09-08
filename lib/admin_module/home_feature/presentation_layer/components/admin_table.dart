@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_bloc.dart';
+import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_states.dart';
 
 class AdminTable extends StatelessWidget {
   final IconData currentIcon;
@@ -11,12 +14,16 @@ class AdminTable extends StatelessWidget {
 
   final bool additionState;
 
+  final numberOftable ;
+
   const AdminTable(
       {Key? key,
       required this.currentIcon,
       required this.data,
       required this.tableName,
-      required this.additionState})
+      required this.additionState,
+        required this.numberOftable,
+      })
       : super(key: key);
 
   @override
@@ -64,18 +71,7 @@ class AdminTable extends StatelessWidget {
                     onTap: () {
                       /// TODO need to know which table i need to add data then add specific data in it
 
-                      CollectionReference users =
-                          FirebaseFirestore.instance.collection('users');
-
-                      users
-                          .add({
-                            'full_name': "amr", // John Doe
-                            'company': "ccc", // Stokes and Sons
-                            'age': 20 // 42
-                          })
-                          .then((value) => print("User Added"))
-                          .catchError(
-                              (error) => print("Failed to add user: $error"));
+                     
                     },
                     child: Icon(
                       Icons.add,
@@ -97,17 +93,86 @@ class AdminTable extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Text(data[index]),
-                );
-              },
-            ),
+          BlocBuilder<AdminHomeBloc, AdminHomeStates>(
+            /// todo : make change for table 2 and 3
+
+            buildWhen: (previous, current)=> previous.allNotesState != current.allNotesState ,
+            builder: (BuildContext context, AdminHomeStates state) {
+              if (numberOftable == 1 || numberOftable == 2) {
+                switch (state.allNotesState) {
+                  case RequestState.loading:
+                    return const Center(child: CircularProgressIndicator());
+                  case RequestState.loaded:
+                    return Expanded(
+                      child: ListView.builder(
+                        itemCount: state.allNotesData.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(1.5),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(.08),
+                                    spreadRadius: 1.2,
+                                    blurRadius: .3,
+                                    offset: Offset.fromDirection(.1),
+                                  )
+                                ],
+                                border: Border.all(color: Colors.black.withOpacity(.3)), // Add a black border
+                                borderRadius: BorderRadius.circular(10.0), // Make the border circular
+                              ),
+
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Text(
+                                  state.allNotesData[index].message,
+                                  maxLines: 2, // Set the maximum number of lines
+                                  overflow: TextOverflow.ellipsis, // Add ellipsis for overflowed text
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  case RequestState.error:
+                    return const Center(child: CircularProgressIndicator());
+                }
+              } else {
+                switch (state.allNotesState) {
+                  case RequestState.loading:
+                    return const Center(child: CircularProgressIndicator());
+                  case RequestState.loaded:
+                    return Expanded(
+                      child: ListView.builder(
+                        itemCount: state.allNotesData.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black), // Add a black border
+                                borderRadius: BorderRadius.circular(10.0), // Make the border circular
+                              ),
+                              child: Text(
+                                state.allNotesData[index].message,
+                                maxLines: 2, // Set the maximum number of lines
+                                overflow: TextOverflow.ellipsis, // Add ellipsis for overflowed text
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  case RequestState.error:
+                    return const Center(child: CircularProgressIndicator());
+                }
+              }
+            },
           ),
+
+
         ],
       ),
     );

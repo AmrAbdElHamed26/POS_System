@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import '../../data_layer/models/all_notes_model.dart';
+
 enum RequestState {
   loading,
   loaded,
@@ -13,8 +15,11 @@ class AdminHomeStates extends Equatable {
 
   /// user name data
   final String userName;
-
   final RequestState userNameStates;
+
+  /// all notes data
+  final List<AllNotesModel> allNotesData ;
+  final RequestState allNotesState ;
 
   /// constructor
   const AdminHomeStates({
@@ -22,6 +27,9 @@ class AdminHomeStates extends Equatable {
     this.timeAndDateStates = RequestState.loading,
     this.userName = "",
     this.userNameStates = RequestState.loading,
+
+    this.allNotesData = const [] ,
+    this.allNotesState = RequestState.loading,
   });
 
   /// copy with to avoid remove data from previous states
@@ -30,17 +38,26 @@ class AdminHomeStates extends Equatable {
     RequestState? timeAndDateStates,
     String? userName,
     RequestState? userNameStates,
+
+    List<AllNotesModel>? allNotesData,
+    RequestState? allNotesState ,
+
   }) {
     return AdminHomeStates(
       timeAndDate: timeAndDate ?? this.timeAndDate,
       timeAndDateStates: timeAndDateStates ?? this.timeAndDateStates,
       userName: userName ?? this.userName,
       userNameStates: userNameStates ?? this.userNameStates,
+
+      allNotesData : allNotesData ?? this.allNotesData,
+      allNotesState: allNotesState?? this.allNotesState,
+
+
     );
   }
 
   /// from equatable class to save memory
   @override
   List<Object?> get props =>
-      [timeAndDate, timeAndDateStates, userName, userNameStates];
+      [timeAndDate, timeAndDateStates, userName, userNameStates , allNotesData ,allNotesState];
 }

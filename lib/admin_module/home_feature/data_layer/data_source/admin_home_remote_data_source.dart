@@ -1,9 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:side_proj/constants/months.dart';
+import 'package:side_proj/services/fire_store_functions.dart';
+
+import '../models/all_notes_model.dart';
 
 abstract class BaseAdminHomeRemoteDataSource {
   Future<String> getDateAndTimeUsingTimeStamp();
-  Future<String>getUserName();
+
+  Future<String> getUserName();
+
+  Future<List<AllNotesModel>> getAllNotes();
 
   /// TODO : get all notes , current orders and tables data
   /// TODO : get total sales
@@ -40,9 +46,15 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
   }
 
   @override
-  Future<String> getUserName() async{
+  Future<String> getUserName() async {
     /// TODO get user name from firebase
 
     return "amr abd elhamed ";
+  }
+
+  @override
+  Future<List<AllNotesModel>> getAllNotes() async {
+    final result = FireStoreFunctions().getAllNotes(userDocumentId : "AJn92NJE9hh8XUnzRtda");
+    return result ;
   }
 }
