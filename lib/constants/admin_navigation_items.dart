@@ -5,7 +5,7 @@ import '../admin_module/presentation_layer/screens/home_screen.dart';
 import '../admin_module/presentation_layer/screens/menue_screen.dart';
 import '../admin_module/presentation_layer/screens/notes_screen.dart';
 import '../admin_module/presentation_layer/screens/reports_screen.dart';
-import '../admin_module/presentation_layer/screens/staff_screen.dart';
+import '../admin_module/adminStaff/presentation/staff_screen.dart';
 import '../admin_module/presentation_layer/screens/tutorial_screen.dart';
 
 
