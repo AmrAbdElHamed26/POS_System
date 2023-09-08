@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../services/fire_store_services.dart';
+
 class AdminTable extends StatelessWidget {
   final IconData currentIcon;
 
@@ -64,18 +66,7 @@ class AdminTable extends StatelessWidget {
                     onTap: () {
                       /// TODO need to know which table i need to add data then add specific data in it
 
-                      CollectionReference users =
-                          FirebaseFirestore.instance.collection('users');
-
-                      users
-                          .add({
-                            'full_name': "amr", // John Doe
-                            'company': "ccc", // Stokes and Sons
-                            'age': 20 // 42
-                          })
-                          .then((value) => print("User Added"))
-                          .catchError(
-                              (error) => print("Failed to add user: $error"));
+                      FireStoreServices().addNote("hello world");
                     },
                     child: Icon(
                       Icons.add,

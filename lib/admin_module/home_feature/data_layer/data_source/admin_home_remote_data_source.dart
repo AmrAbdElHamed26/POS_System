@@ -3,7 +3,15 @@ import 'package:side_proj/constants/months.dart';
 
 abstract class BaseAdminHomeRemoteDataSource {
   Future<String> getDateAndTimeUsingTimeStamp();
-  Future<String>getUserName();
+
+  Future<String> getUserName();
+
+  /// Todo : change model of data
+  Future<String> getAllNotes();
+
+  Future<String> getAllOrders();
+
+  Future<String> getTablesData();
 
   /// TODO : get all notes , current orders and tables data
   /// TODO : get total sales
@@ -30,7 +38,6 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
           "${dateTime.day.toString().padLeft(2, '0')},${numberToMonth[dateTime.month.toString().padLeft(2, '0')]} ${dateTime.year} ";
 
       await docRef.delete();
-
       return formattedDateTime;
     } catch (e) {
       // Handle any potential errors here
@@ -40,9 +47,27 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
   }
 
   @override
-  Future<String> getUserName() async{
+  Future<String> getUserName() async {
     /// TODO get user name from firebase
 
     return "amr abd elhamed ";
+  }
+
+  @override
+  Future<String> getAllNotes() {
+    // TODO: implement getAllNotes
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> getAllOrders() {
+    // TODO: implement getAllOrders
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> getTablesData() {
+    // TODO: implement getTablesData
+    throw UnimplementedError();
   }
 }

@@ -14,7 +14,7 @@ class AdminHomeScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
     return BlocProvider(
-      create: (BuildContext context) => getIt<AdminHomeBloc>()
+      create: (BuildContext context) => getItAdminHomeFeature<AdminHomeBloc>()
         ..add(GetTimeAndDateUsingTimeStampEvent())
         ..add(GetUserNameEvent()),
       child: SingleChildScrollView(
