@@ -11,20 +11,20 @@ import '../admin_module/home_feature/data_layer/repository/admin_home_repository
 final getIt = GetIt.instance;
 
 class ServicesLocator {
-  void init() {
-    ///blocs
-    getIt.registerFactory(() => AdminHomeBloc(getIt() , getIt() , getIt()));
+    void init() {
+        ///blocs
+        getIt.registerFactory(() => AdminHomeBloc(getIt() , getIt() , getIt()));
 
-    ///DATA SOURCE
-    getIt.registerLazySingleton<BaseAdminHomeRemoteDataSource>(() =>AdminHomeRemoteDataSource() );
+        ///DATA SOURCE
+        getIt.registerLazySingleton<BaseAdminHomeRemoteDataSource>(() =>AdminHomeRemoteDataSource() );
 
-    ///REPOSITORY
-    getIt.registerLazySingleton<BaseAdminHomeRepository>(() =>AdminHomeRepository(getIt()) );
+        ///REPOSITORY
+        getIt.registerLazySingleton<BaseAdminHomeRepository>(() =>AdminHomeRepository(getIt()) );
 
-    ///USE CASE
-    getIt.registerLazySingleton(() => GetTimeAndDateUsingTimeStampUseCase(getIt()));
-    getIt.registerLazySingleton(() => GetUserNameUseCase(getIt()));
-    getIt.registerLazySingleton(() => GetAllNotesUseCase(getIt()));
+        ///USE CASE
+        getIt.registerLazySingleton(() => GetTimeAndDateUsingTimeStampUseCase(getIt()));
+        getIt.registerLazySingleton(() => GetUserNameUseCase(getIt()));
+        getIt.registerLazySingleton(() => GetAllNotesUseCase(getIt()));
 
-  }
+    }
 }

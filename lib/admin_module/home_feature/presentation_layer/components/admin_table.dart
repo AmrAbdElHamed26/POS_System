@@ -5,26 +5,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_bloc.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_states.dart';
 
+import '../../../../services/fire_store_services.dart';
+
 class AdminTable extends StatelessWidget {
   final IconData currentIcon;
-
   final List<String> data;
-
   final String tableName;
-
   final bool additionState;
+  final numberOftable;
 
-  final numberOftable ;
-
-  const AdminTable(
-      {Key? key,
-      required this.currentIcon,
-      required this.data,
-      required this.tableName,
-      required this.additionState,
-        required this.numberOftable,
-      })
-      : super(key: key);
+  const AdminTable({
+    Key? key,
+    required this.currentIcon,
+    required this.data,
+    required this.tableName,
+    required this.additionState,
+    required this.numberOftable,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,16 +59,18 @@ class AdminTable extends StatelessWidget {
                     Text(
                       tableName,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 12),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
                     ),
                   ],
                 ),
                 if (additionState == true)
                   GestureDetector(
                     onTap: () {
-                      /// TODO need to know which table i need to add data then add specific data in it
-
-                     
+                      // Add your code to add a note to Firestore here
+                      // Example:
+                      FireStoreServices().addNote("hello world");
                     },
                     child: Icon(
                       Icons.add,
@@ -94,9 +93,8 @@ class AdminTable extends StatelessWidget {
             ),
           ),
           BlocBuilder<AdminHomeBloc, AdminHomeStates>(
-            /// todo : make change for table 2 and 3
-
-            buildWhen: (previous, current)=> previous.allNotesState != current.allNotesState ,
+            buildWhen: (previous, current) =>
+            previous.allNotesState != current.allNotesState,
             builder: (BuildContext context, AdminHomeStates state) {
               if (numberOftable == 1 || numberOftable == 2) {
                 switch (state.allNotesState) {
@@ -119,16 +117,18 @@ class AdminTable extends StatelessWidget {
                                     offset: Offset.fromDirection(.1),
                                   )
                                 ],
-                                border: Border.all(color: Colors.black.withOpacity(.3)), // Add a black border
-                                borderRadius: BorderRadius.circular(10.0), // Make the border circular
+                                border: Border.all(
+                                    color: Colors.black.withOpacity(.3)),
+                                borderRadius: BorderRadius.circular(
+                                    10.0), // Make the border circular
                               ),
-
                               child: Padding(
                                 padding: const EdgeInsets.all(3.0),
                                 child: Text(
                                   state.allNotesData[index].message,
-                                  maxLines: 2, // Set the maximum number of lines
-                                  overflow: TextOverflow.ellipsis, // Add ellipsis for overflowed text
+                                  maxLines: 2,
+                                  overflow: TextOverflow
+                                      .ellipsis, // Add ellipsis for overflowed text
                                 ),
                               ),
                             ),
@@ -152,13 +152,16 @@ class AdminTable extends StatelessWidget {
                             padding: const EdgeInsets.all(3.0),
                             child: Container(
                               decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black), // Add a black border
-                                borderRadius: BorderRadius.circular(10.0), // Make the border circular
+                                border: Border.all(
+                                    color: Colors.black), // Add a black border
+                                borderRadius: BorderRadius.circular(
+                                    10.0), // Make the border circular
                               ),
                               child: Text(
                                 state.allNotesData[index].message,
-                                maxLines: 2, // Set the maximum number of lines
-                                overflow: TextOverflow.ellipsis, // Add ellipsis for overflowed text
+                                maxLines: 2,
+                                overflow: TextOverflow
+                                    .ellipsis, // Add ellipsis for overflowed text
                               ),
                             ),
                           );
@@ -171,8 +174,6 @@ class AdminTable extends StatelessWidget {
               }
             },
           ),
-
-
         ],
       ),
     );

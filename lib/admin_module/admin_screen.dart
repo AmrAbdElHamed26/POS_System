@@ -22,14 +22,19 @@ class AdminScreen extends StatelessWidget {
             AdminNavigationBar(),
             Expanded(
               flex: 16,
-              child:  BlocBuilder<AdminBloc, AdminStates>(
+              child: BlocBuilder<AdminBloc, AdminStates>(
                 builder: (context, state) {
-                  int currentIndex = 0 ;
-                  if(state is CurrentPageChangedState){
+                  int currentIndex = 0;
+                  if (state is CurrentPageChangedState) {
                     currentIndex = state.pageNumber;
                   }
-                  return adminScreens[currentIndex];
-
+                  return SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        adminScreens[currentIndex],
+                      ],
+                    ),
+                  );
                 },
               ),
             ),

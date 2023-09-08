@@ -11,18 +11,16 @@ abstract class BaseAdminHomeRemoteDataSource {
 
   Future<List<AllNotesModel>> getAllNotes();
 
-  /// TODO : get all notes , current orders and tables data
-  /// TODO : get total sales
+// Add more methods as needed
 }
 
-/// TODO : need to handle errors in exceptions only , handle requests using maps class
 class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
   @override
   Future<String> getDateAndTimeUsingTimeStamp() async {
     try {
       // Add a document with a server timestamp to the 'time' collection
       DocumentReference docRef =
-          FirebaseFirestore.instance.collection('time').doc();
+      FirebaseFirestore.instance.collection('time').doc();
       await docRef.set({
         'timeStamp': FieldValue.serverTimestamp(),
       });
@@ -33,10 +31,9 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
       DateTime dateTime = serverTimestamp.toDate();
 
       String formattedDateTime =
-          "${dateTime.day.toString().padLeft(2, '0')},${numberToMonth[dateTime.month.toString().padLeft(2, '0')]} ${dateTime.year} ";
+          "${dateTime.day.toString().padLeft(2, '0')}, ${numberToMonth[dateTime.month.toString().padLeft(2, '0')]} ${dateTime.year}";
 
       await docRef.delete();
-
       return formattedDateTime;
     } catch (e) {
       // Handle any potential errors here
@@ -47,14 +44,15 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
 
   @override
   Future<String> getUserName() async {
-    /// TODO get user name from firebase
+    /// TODO: Implement getting user name from Firebase
 
-    return "amr abd elhamed ";
+    return "amr abd elhamed";
   }
 
   @override
   Future<List<AllNotesModel>> getAllNotes() async {
-    final result = FireStoreFunctions().getAllNotes(userDocumentId : "AJn92NJE9hh8XUnzRtda");
-    return result ;
+    final result = FireStoreFunctions().getAllNotes(userDocumentId: "AJn92NJE9hh8XUnzRtda");
+    return result;
   }
+
 }
