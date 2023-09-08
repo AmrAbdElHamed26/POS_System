@@ -26,9 +26,15 @@ class AdminHomeBloc extends Bloc<AdminHomeEvents, AdminHomeStates> {
     ));
   }
 
+
   FutureOr<void> getUserName(event, emit) async {
     //amr
     final result = await getUserNameUseCase.execute();
+
+  FutureOr<void> getUserName(event, emit) async{
+    //amr abd el hamed
+    final result =  await getUserNameUseCase.execute();
+
     emit(state.copyWith(
       userName: result,
       userNameStates: RequestState.loaded,
