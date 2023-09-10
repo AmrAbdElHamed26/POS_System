@@ -18,7 +18,7 @@ class AdminHomeAllTables extends StatelessWidget {
                 currentIcon: Icons.speaker_notes_outlined,
                 data: data,
                 tableName: "Quick Notes",
-                additionState: true,
+                additionState: false,
               numberOftable: 1,
             ),
             const SizedBox(
