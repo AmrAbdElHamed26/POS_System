@@ -5,6 +5,7 @@ import 'package:side_proj/admin_module/home_feature/domain_layer/use_cases/get_a
 import 'package:side_proj/admin_module/home_feature/domain_layer/use_cases/get_name_use_case.dart';
 import 'package:side_proj/admin_module/home_feature/domain_layer/use_cases/get_time_and_date_use_case.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_bloc.dart';
+import 'package:side_proj/admin_module/presentation_layer/controller/admin_bloc.dart';
 
 import '../admin_module/home_feature/data_layer/repository/admin_home_repository.dart';
 
@@ -14,7 +15,7 @@ class ServicesLocator {
     void init() {
         ///blocs
         getIt.registerFactory(() => AdminHomeBloc(getIt() , getIt() , getIt()));
-
+        getIt.registerFactory(() => AdminBloc());
         ///DATA SOURCE
         getIt.registerLazySingleton<BaseAdminHomeRemoteDataSource>(() =>AdminHomeRemoteDataSource() );
 

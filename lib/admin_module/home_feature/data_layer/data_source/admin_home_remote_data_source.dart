@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:side_proj/constants/months.dart';
 import 'package:side_proj/services/fire_store_functions.dart';
+import 'package:side_proj/services/save_data.dart';
 
 import '../models/all_notes_model.dart';
 
@@ -51,7 +52,8 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
 
   @override
   Future<List<AllNotesModel>> getAllNotes() async {
-    final result = FireStoreFunctions().getAllNotes(userDocumentId: "AJn92NJE9hh8XUnzRtda");
+    final result = await FireStoreFunctions().getAllNotes(userDocumentId: "AJn92NJE9hh8XUnzRtda");
+    adminScreenData.allNotes =  List<AllNotesModel>.from(result);// save data because i used it in another page
     return result;
   }
 
