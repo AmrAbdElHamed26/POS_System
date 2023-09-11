@@ -17,6 +17,7 @@ class NotesTable extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             width: containerWidth,
@@ -52,7 +53,7 @@ class NotesTable extends StatelessWidget {
                   ),
                   SizedBox(height: 4,),
                   Text(
-                    allNotes.message ,
+                    "${allNotes.message} ",
                     overflow: TextOverflow
                         .ellipsis,
                     maxLines: 6,
@@ -64,21 +65,22 @@ class NotesTable extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(height: 15,),
           SizedBox(
-            width: 50,
-            height: 30,
-            child: Text(
-              allNotes.messageTitle ,
-              maxLines: 1,
-              overflow: TextOverflow
-                  .ellipsis,
-              style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
+            width: containerWidth,
+            child: Center(
+              child: Text(
+                allNotes.messageTitle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
+
 
         ],
       ),

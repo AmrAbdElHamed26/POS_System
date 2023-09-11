@@ -52,7 +52,7 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
 
   @override
   Future<List<AllNotesModel>> getAllNotes() async {
-    final result = await FireStoreFunctions().getAllNotes(userDocumentId: "AJn92NJE9hh8XUnzRtda");
+    final result = await FireStoreFunctions().getAllNotesService(userDocumentId: "AJn92NJE9hh8XUnzRtda");
     adminScreenData.allNotes =  List<AllNotesModel>.from(result);// save data because i used it in another page
     return result;
   }
