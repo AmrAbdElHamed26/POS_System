@@ -47,6 +47,7 @@ dependencies:
   shared_preferences: ^2.2.1
 
   get_it: ^7.6.4
+  font_awesome_flutter: ^10.5.0
 
 
 dev_dependencies:

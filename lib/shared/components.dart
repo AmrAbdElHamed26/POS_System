@@ -7,6 +7,7 @@ Widget customizedTextFormField(
       required TextInputType textInputType,
       bool secure = false,
       Icon? suffix,
+      Icon? pre,
       void Function()? show,
     }
     )=>Material(
@@ -19,6 +20,7 @@ Widget customizedTextFormField(
        child: TextFormField(
         decoration:
         InputDecoration(
+
             border: OutlineInputBorder(
               borderSide: BorderSide.none,
             ),
@@ -26,6 +28,7 @@ Widget customizedTextFormField(
             hintStyle: TextStyle(
               color: Colors.grey[500],
             ),
+            prefixIcon: pre,
             suffixIcon: suffix != null? IconButton(
               icon: suffix,
               onPressed: show
