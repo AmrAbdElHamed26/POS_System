@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_proj/admin_module/adminStaff/presentation/staff_screen.dart';
+import 'package:side_proj/admin_module/adminStaff/presentation/staff_screen_impl.dart';
 
 import 'package:side_proj/features/login/presentation/login_screen.dart';
 import 'package:side_proj/features/register/presentation/register_screen.dart';
@@ -16,6 +18,7 @@ import 'firebase_options.dart';
 void main() async {
   Bloc.observer = MyBlocObserver();
   ServicesLocator().init();
+  await CacheHelper.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      home: RegisterScreen(),
+      home: AdminScreen(),
 
     );
   }

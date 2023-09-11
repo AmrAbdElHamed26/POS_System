@@ -29,7 +29,7 @@ class _LoginScreenImplState extends State<LoginScreenImpl> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image(
-                    image: AssetImage('assets/images/login.jpg'),
+                  image: AssetImage('assets/images/login.jpg'),
                   width: MediaQuery.sizeOf(context).width/2.5,
                 ),
                 SizedBox(
@@ -76,7 +76,7 @@ class _LoginScreenImplState extends State<LoginScreenImpl> {
                           GestureDetector(
                             onTap: (){
                               print(
-                                'forget pass'
+                                  'forget pass'
                               );
                             },
                             child: Text(
@@ -96,9 +96,9 @@ class _LoginScreenImplState extends State<LoginScreenImpl> {
                       customizedButton(
                         text: 'Sign in',onPressed:(){
                         loginRepoImp.user_login(
-                          emailController.text,
-                          passwordController.text,
-                          context
+                            emailController.text,
+                            passwordController.text,
+                            context
 
                         );
                       },
