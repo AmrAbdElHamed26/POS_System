@@ -14,3 +14,5 @@ class AddNoteEvent extends AdminNotesEvents{
 
   AddNoteEvent({required this.note});
 }
+
+class GetAllNotesEvent extends AdminNotesEvents{}

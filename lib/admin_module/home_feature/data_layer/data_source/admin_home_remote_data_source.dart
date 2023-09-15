@@ -55,17 +55,31 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
 
   @override
   Future<List<AllNotesModel>> getAllNotes() async {
-    final result = await FireStoreFunctions().getAllQuickNotesService(userDocumentId: "AJn92NJE9hh8XUnzRtda");
-    //adminScreenData.allNotes =  List<AllNotesModel>.from(result);// save data because i used it in another page
-    return result;
+
+    if(adminScreenData.allQuickNotesChanges == true){
+      final result = await FireStoreFunctions().getAllQuickNotesService(userDocumentId: "AJn92NJE9hh8XUnzRtda");
+      adminScreenData.allQuickNotes =  List<AllNotesModel>.from(result);
+      adminScreenData.allQuickNotesNewState(false);
+      return result ;
+    }
+    else {
+      return adminScreenData.allQuickNotes ;
+    }
+
   }
 
   @override
   Future<List<AllToDoListModel>> getAllToDo() async {
 
-    final result = await FireStoreFunctions().getAllToDoService(userDocumentId: "AJn92NJE9hh8XUnzRtda");
-    //adminScreenData.allNotes =  List<AllNotesModel>.from(result);// save data because i used it in another page
-    return result;
+    if(adminScreenData.allQuickToDoListChanges == true){
+      final result = await FireStoreFunctions().getAllToDoService(userDocumentId: "AJn92NJE9hh8XUnzRtda");
+      adminScreenData.setAllQuickToDoListData =  List<AllToDoListModel>.from(result);
+      adminScreenData.setAllQuickToDoListChanges(false);
+      return result;
+    }
+    else {
+      return adminScreenData.allQuickToDoList ;
+    }
   }
 
 }

@@ -10,12 +10,12 @@ class AdminHomeAllTables extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Row(
+         const Row(
           children: [
             AdminTable(
                 currentIcon: Icons.speaker_notes_outlined,
                 tableName: "Quick Notes",
-                additionState: false,
+                iconState: true,
               numberOfTable: 1,
             ),
             SizedBox(
@@ -24,7 +24,7 @@ class AdminHomeAllTables extends StatelessWidget {
             AdminTable(
                 currentIcon: Icons.timer_outlined,
                 tableName: "Current Orders",
-                additionState: false,
+                iconState: true,
             numberOfTable: 2,),
             SizedBox(
               width: 15,
@@ -33,7 +33,7 @@ class AdminHomeAllTables extends StatelessWidget {
               numberOfTable: 3,
                 currentIcon: Icons.table_restaurant_outlined,
                 tableName: "To Do List",
-                additionState: false),
+                iconState: true),
           ],
         ),
         const SizedBox(

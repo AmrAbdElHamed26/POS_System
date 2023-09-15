@@ -7,14 +7,14 @@ import 'package:side_proj/admin_module/home_feature/presentation_layer/controlle
 class AdminTable extends StatelessWidget {
   final IconData currentIcon;
   final String tableName;
-  final bool additionState;
+  final bool iconState;
   final int numberOfTable;
 
   const AdminTable({
     Key? key,
     required this.currentIcon,
     required this.tableName,
-    required this.additionState,
+    required this.iconState,
     required this.numberOfTable,
   }) : super(key: key);
 
@@ -60,14 +60,13 @@ class AdminTable extends StatelessWidget {
                     ),
                   ],
                 ),
-                if (additionState == true)
+                if (iconState == true)
                   GestureDetector(
                     onTap: () {
-                      // Add your code to add a note to Firestore here
-                      // Example:
+
                     },
                     child: Icon(
-                      Icons.add,
+                      Icons.more_vert,
                       color: Colors.black.withOpacity(.5),
                     ),
                   ),

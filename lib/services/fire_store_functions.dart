@@ -83,6 +83,32 @@ class FireStoreFunctions {
       print("Error adding note to Firestore: $e");
     }
   }
+
+  Future<List<AllNotesModel>>getAllNotesService ({required userDocumentId})async {
+    try {
+      final userDocument =
+      await FirebaseFirestore.instance.collection('users').doc(userDocumentId).get();
+      if (userDocument.exists) {
+        final allNotesCollection = userDocument.reference.collection('allNotes');
+
+        final notesQuerySnapshot =
+        await allNotesCollection.orderBy('messageTime').get();
+
+        // Extract and return the data as a list of AllNotesModel objects
+        final notes =
+        notesQuerySnapshot.docs.map((doc) => AllNotesModel.fromJson(doc.data())).toList();
+
+        return notes;
+      } else {
+        // Document does not exist, handle this case accordingly
+        throw Exception("User document not found");
+      }
+    } catch (e) {
+      // Handle any errors that occur during the process
+      print("Error fetching notes: $e");
+      return []; // Return an empty list or handle the error differently
+    }
+  }
 }
 
 

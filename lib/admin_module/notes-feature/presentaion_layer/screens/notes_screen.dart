@@ -11,7 +11,7 @@ import '../controller/admin_notes_events.dart';
 class AdminNotesScreen extends StatelessWidget {
   AdminNotesScreen({Key? key}) : super(key: key);
 
-  final AdminNotesBloc adminNotesBloc = AdminNotesBloc(getIt());
+  //final AdminNotesBloc adminNotesBloc = getIt();
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -27,7 +27,7 @@ class AdminNotesScreen extends StatelessWidget {
           verticalPadding,
         ),
         child: BlocProvider(
-          create: (BuildContext context)=>adminNotesBloc,
+          create: (BuildContext context)=>getIt<AdminNotesBloc>()..add(GetAllNotesEvent()),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -43,7 +43,7 @@ class AdminNotesScreen extends StatelessWidget {
                           messageID: "a",
                           messageTime: "a");
 
-                      adminNotesBloc.add(AddNoteEvent(note: note));
+                      getIt<AdminNotesBloc>().add(AddNoteEvent(note: note));
                     },
                     child: const Icon(Icons.add),
                   ),

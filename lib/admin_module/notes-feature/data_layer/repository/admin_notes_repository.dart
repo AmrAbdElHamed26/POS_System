@@ -11,4 +11,10 @@ class AdminNotesRepository extends BaseAdminNotesRepository{
     baseAdminNotesRemoteDataSource.addNote(note);
   }
 
+  @override
+  Future<List<AllNotesModel>> getAllNotesData() async {
+      final result = await  baseAdminNotesRemoteDataSource.getAllNotesData();
+      return result ;
+  }
+
 }

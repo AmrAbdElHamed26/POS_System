@@ -8,6 +8,7 @@ import 'package:side_proj/admin_module/home_feature/presentation_layer/controlle
 import 'package:side_proj/admin_module/notes-feature/data_layer/data_source/admin_notes_remote_data_source.dart';
 import 'package:side_proj/admin_module/notes-feature/data_layer/repository/admin_notes_repository.dart';
 import 'package:side_proj/admin_module/notes-feature/domain_layer/use_cases/add_note_use_case.dart';
+import 'package:side_proj/admin_module/notes-feature/domain_layer/use_cases/get_all_notes_use_case_notes.dart';
 import 'package:side_proj/admin_module/presentation_layer/controller/admin_bloc.dart';
 import 'package:side_proj/services/fire_store_functions.dart';
 import 'package:side_proj/services/save_data.dart';
@@ -29,7 +30,7 @@ class ServicesLocator {
         ///blocs
         getIt.registerFactory(() => AdminHomeBloc(getIt() , getIt() , getIt() , getIt()));
         getIt.registerFactory(() => AdminBloc());
-        getIt.registerLazySingleton<AdminNotesBloc>(()=>AdminNotesBloc(getIt()));
+        getIt.registerFactory<AdminNotesBloc>(()=>AdminNotesBloc(getIt() , getIt()));
 
         ///DATA SOURCE
         getIt.registerLazySingleton<BaseAdminHomeRemoteDataSource>(() =>AdminHomeRemoteDataSource() );
@@ -48,6 +49,7 @@ class ServicesLocator {
         getIt.registerLazySingleton(() => GetAllToDoListUseCase(getIt()));
 
         getIt.registerLazySingleton(() => AddNoteUseCase(getIt()));
+        getIt.registerLazySingleton(() =>GetAllNotesUseCaseNotes(getIt()));
 
     }
 }

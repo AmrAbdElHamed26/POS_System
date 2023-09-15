@@ -22,8 +22,8 @@ class AdminHomeBloc extends Bloc<AdminHomeEvents, AdminHomeStates> {
       :super(const AdminHomeStates()) {
     on<GetTimeAndDateUsingTimeStampEvent>(getTimeAndDate);
     on<GetUserNameEvent>(getUserName);
-    on<GetAllNotesEvent>(getAllNotes);
-    on<GetAllToDoListEvent>(getAllTodDoList);
+    on<GetAllQuickNotesEvent>(getAllNotes);
+    on<GetAllQuickToDoListEvent>(getAllTodDoList);
   }
 
 

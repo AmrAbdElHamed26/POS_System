@@ -5,6 +5,7 @@ abstract class BaseAdminNotesRepository {
   /// get all notes is done in admin_home_screen
 
   Future<void>addNote(AllNotesModel note);
+  Future<List<AllNotesModel>> getAllNotesData();
 
 }
 

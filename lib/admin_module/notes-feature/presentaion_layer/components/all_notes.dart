@@ -40,17 +40,21 @@ class AllNotes extends StatelessWidget {
           height: screenSize.height * 0.33, // 40% of screen height
           child: BlocBuilder<AdminNotesBloc,AdminNotesStates>(
             builder: (BuildContext context , AdminNotesStates state){
-              if(adminScreenData.allNotes.isEmpty){
-                return Center(child: Text("You dont have notes"));
-              }
-              else {
+              switch(state.allNotesState){
+
+                case RequestState.loading:
+                  return Center(child: CircularProgressIndicator());
+                case RequestState.loaded:
                 return ListView.builder(
                   physics: const ClampingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) =>
-                      NotesTable(allNotes: adminScreenData.allNotes[index]),
-                  itemCount: adminScreenData.allNotes.length,
+                      NotesTable(allNotes: state.allNotesData[index]),
+                  itemCount: state.allNotesData.length,
                   scrollDirection: Axis.horizontal,
                 );
+                case RequestState.error:
+                  return Center(child: CircularProgressIndicator());
+
               }
             },
           ),
