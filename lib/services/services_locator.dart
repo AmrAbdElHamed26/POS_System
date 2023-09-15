@@ -13,6 +13,7 @@ import 'package:side_proj/services/fire_store_functions.dart';
 import 'package:side_proj/services/save_data.dart';
 
 import '../admin_module/home_feature/data_layer/repository/admin_home_repository.dart';
+import '../admin_module/home_feature/domain_layer/use_cases/get_all_to_do_list_use_case.dart';
 import '../admin_module/notes-feature/domain_layer/repository/base_admin_notes_repository.dart';
 import '../admin_module/notes-feature/presentaion_layer/controller/admin_notes_bloc.dart';
 
@@ -26,7 +27,7 @@ class ServicesLocator {
 
 
         ///blocs
-        getIt.registerFactory(() => AdminHomeBloc(getIt() , getIt() , getIt()));
+        getIt.registerFactory(() => AdminHomeBloc(getIt() , getIt() , getIt() , getIt()));
         getIt.registerFactory(() => AdminBloc());
         getIt.registerLazySingleton<AdminNotesBloc>(()=>AdminNotesBloc(getIt()));
 
@@ -44,6 +45,7 @@ class ServicesLocator {
         getIt.registerLazySingleton(() => GetTimeAndDateUsingTimeStampUseCase(getIt()));
         getIt.registerLazySingleton(() => GetUserNameUseCase(getIt()));
         getIt.registerLazySingleton(() => GetAllNotesUseCase(getIt()));
+        getIt.registerLazySingleton(() => GetAllToDoListUseCase(getIt()));
 
         getIt.registerLazySingleton(() => AddNoteUseCase(getIt()));
 

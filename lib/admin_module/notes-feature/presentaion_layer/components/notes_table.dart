@@ -23,7 +23,7 @@ class NotesTable extends StatelessWidget {
             width: containerWidth,
             height: 170,
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: Color(0xFFF7F7F7),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),

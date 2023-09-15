@@ -7,7 +7,6 @@ import '../../../home_feature/data_layer/models/all_notes_model.dart';
 import '../components/all_notes.dart';
 import '../controller/admin_notes_bloc.dart';
 import '../controller/admin_notes_events.dart';
-import '../controller/admin_notes_states.dart';
 
 class AdminNotesScreen extends StatelessWidget {
   AdminNotesScreen({Key? key}) : super(key: key);

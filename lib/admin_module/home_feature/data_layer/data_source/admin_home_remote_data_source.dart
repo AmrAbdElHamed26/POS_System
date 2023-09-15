@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:side_proj/admin_module/home_feature/data_layer/models/all_to_do_list_model.dart';
 import 'package:side_proj/constants/months.dart';
 import 'package:side_proj/services/fire_store_functions.dart';
 import 'package:side_proj/services/save_data.dart';
@@ -11,6 +12,8 @@ abstract class BaseAdminHomeRemoteDataSource {
   Future<String> getUserName();
 
   Future<List<AllNotesModel>> getAllNotes();
+
+  Future<List<AllToDoListModel>> getAllToDo();
 
 // Add more methods as needed
 }
@@ -52,8 +55,16 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
 
   @override
   Future<List<AllNotesModel>> getAllNotes() async {
-    final result = await FireStoreFunctions().getAllNotesService(userDocumentId: "AJn92NJE9hh8XUnzRtda");
-    adminScreenData.allNotes =  List<AllNotesModel>.from(result);// save data because i used it in another page
+    final result = await FireStoreFunctions().getAllQuickNotesService(userDocumentId: "AJn92NJE9hh8XUnzRtda");
+    //adminScreenData.allNotes =  List<AllNotesModel>.from(result);// save data because i used it in another page
+    return result;
+  }
+
+  @override
+  Future<List<AllToDoListModel>> getAllToDo() async {
+
+    final result = await FireStoreFunctions().getAllToDoService(userDocumentId: "AJn92NJE9hh8XUnzRtda");
+    //adminScreenData.allNotes =  List<AllNotesModel>.from(result);// save data because i used it in another page
     return result;
   }
 

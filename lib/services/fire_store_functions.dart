@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:side_proj/admin_module/home_feature/data_layer/models/all_to_do_list_model.dart';
 
 import '../admin_module/home_feature/data_layer/models/all_notes_model.dart';
 
 class FireStoreFunctions {
-  Future<List<AllNotesModel>> getAllNotesService({required userDocumentId}) async {
+  Future<List<AllNotesModel>> getAllQuickNotesService({required userDocumentId}) async {
     try {
       final userDocument =
       await FirebaseFirestore.instance.collection('users').doc(userDocumentId).get();
       if (userDocument.exists) {
-        final allNotesCollection = userDocument.reference.collection('allNotes');
+        final allNotesCollection = userDocument.reference.collection('allQuickNotes');
 
-        // Query the 'allNotes' subcollection and order the results by 'messageTime'
         final notesQuerySnapshot =
         await allNotesCollection.orderBy('messageTime').get();
 
@@ -18,7 +18,6 @@ class FireStoreFunctions {
         final notes =
         notesQuerySnapshot.docs.map((doc) => AllNotesModel.fromJson(doc.data())).toList();
 
-        print("Notes is $notes");
         return notes;
       } else {
         // Document does not exist, handle this case accordingly
@@ -30,7 +29,32 @@ class FireStoreFunctions {
       return []; // Return an empty list or handle the error differently
     }
   }
+  Future<List<AllToDoListModel>> getAllToDoService({required userDocumentId}) async {
+    try {
+      final userDocument =
+      await FirebaseFirestore.instance.collection('users').doc(userDocumentId).get();
+      if (userDocument.exists) {
+        final allNotesCollection = userDocument.reference.collection('ToDoList');
 
+        // Query the 'allNotes' subcollection and order the results by 'messageTime'
+        final notesQuerySnapshot =
+        await allNotesCollection.orderBy('messageTime').get();
+
+        // Extract and return the data as a list of AllNotesModel objects
+        final toDoList =
+        notesQuerySnapshot.docs.map((doc) => AllToDoListModel.fromJson(doc.data())).toList();
+
+        return toDoList;
+      } else {
+        // Document does not exist, handle this case accordingly
+        throw Exception("User document not found");
+      }
+    } catch (e) {
+      // Handle any errors that occur during the process
+      print("Error fetching notes: $e");
+      return []; // Return an empty list or handle the error differently
+    }
+  }
   Future<void>addNoteService(AllNotesModel note)async {
     CollectionReference usersCollection =
     FirebaseFirestore.instance.collection('users');
