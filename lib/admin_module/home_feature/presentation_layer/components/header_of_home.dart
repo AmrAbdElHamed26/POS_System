@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:side_proj/admin_module/adminStaff/presentation/staff_screen.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_bloc.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_states.dart';
+import 'package:side_proj/admin_module/presentation_layer/controller/admin_bloc.dart';
+import 'package:side_proj/services/services_locator.dart';
 
 class HeaderOfAdminHome extends StatelessWidget {
   const HeaderOfAdminHome({Key? key, required this.screenWidth})
@@ -44,34 +47,41 @@ class HeaderOfAdminHome extends StatelessWidget {
             SizedBox(
               width: screenWidth / 2.2,
             ),
-            GestureDetector(
-              /// TODO make an action for this button
-              onTap: () {},
-              child: Container(
-                height: 35,
-                width: 100,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                  color: Colors.black,
-                ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.person_add_alt,
-                      color: Colors.white,
-                      size: 15,
+            BlocBuilder<AdminBloc, AdminStates>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () {
+
+                    BlocProvider.of<AdminBloc>(context).add(const ChangePageEvent(pageNumber: 4));
+
+                  },
+                  child: Container(
+                    height: 35,
+                    width: 100,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      color: Colors.black,
                     ),
-                    SizedBox(
-                      width: 3,
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.person_add_alt,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Text(
+                          "Add Staff",
+                          style: TextStyle(color: Colors.white, fontSize: 8),
+                        ),
+                      ],
                     ),
-                    Text(
-                      "Add Staff",
-                      style: TextStyle(color: Colors.white, fontSize: 8),
-                    ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             )
           ],
         ),
