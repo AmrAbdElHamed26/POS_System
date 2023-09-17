@@ -29,7 +29,7 @@ class FireStoreFunctions {
       return []; // Return an empty list or handle the error differently
     }
   }
-  Future<List<AllToDoListModel>> getAllToDoService({required userDocumentId}) async {
+  Future<List<AllToDoListModel>> getAllQuickToDoService({required userDocumentId}) async {
     try {
       final userDocument =
       await FirebaseFirestore.instance.collection('users').doc(userDocumentId).get();
@@ -109,6 +109,33 @@ class FireStoreFunctions {
       return []; // Return an empty list or handle the error differently
     }
   }
+  Future<List<AllToDoListModel>> getAllToDoService({required userDocumentId}) async {
+    try {
+      final userDocument =
+      await FirebaseFirestore.instance.collection('users').doc(userDocumentId).get();
+      if (userDocument.exists) {
+        final allNotesCollection = userDocument.reference.collection('ToDoList');
+
+        // Query the 'allNotes' subcollection and order the results by 'messageTime'
+        final notesQuerySnapshot =
+        await allNotesCollection.orderBy('messageTime').get();
+
+        // Extract and return the data as a list of AllNotesModel objects
+        final toDoList =
+        notesQuerySnapshot.docs.map((doc) => AllToDoListModel.fromJson(doc.data())).toList();
+
+        return toDoList;
+      } else {
+        // Document does not exist, handle this case accordingly
+        throw Exception("User document not found");
+      }
+    } catch (e) {
+      // Handle any errors that occur during the process
+      print("Error fetching notes: $e");
+      return []; // Return an empty list or handle the error differently
+    }
+  }
+
 }
 
 

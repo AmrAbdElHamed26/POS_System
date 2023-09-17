@@ -11,17 +11,17 @@ class NotesTable extends StatelessWidget {
     // Get the screen size
     final screenSize = MediaQuery.of(context).size;
 
-    final containerWidth = screenSize.width * 0.18;
-    final containerHeight = screenSize.height * 0.5;
+    final containerWidth = screenSize.width * 0.15;
+    final containerHeight = screenSize.height * 0.3;
 
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.only(left: 10 , right: 10 , top: 5 , bottom: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             width: containerWidth,
-            height: 170,
+            height: 150,
             decoration: ShapeDecoration(
               color: Color(0xFFF7F7F7),
               shape: RoundedRectangleBorder(

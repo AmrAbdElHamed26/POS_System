@@ -16,3 +16,8 @@ class AddNoteEvent extends AdminNotesEvents{
 }
 
 class GetAllNotesEvent extends AdminNotesEvents{}
+
+class ShowAddNoteScreenEvent extends AdminNotesEvents{}
+class HideAddNoteScreenEvent extends AdminNotesEvents{}
+
+class GetAllToDoEvent extends AdminNotesEvents {}

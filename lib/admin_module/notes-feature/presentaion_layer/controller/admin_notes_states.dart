@@ -13,11 +13,24 @@ class AdminNotesStates extends Equatable {
   final List<AllNotesModel> allNotesData;
   final RequestState allNotesState;
 
+  /// all To Do List data
+  final List<AllToDoListModel> allToDoListData;
+  final RequestState allToDoState;
+
+
+  final bool showAddNoteScreen;
+
+
   const AdminNotesStates({
+    this.showAddNoteScreen = false,
+
     this.addNoteState = RequestState.loading,
 
     this.allNotesData = const [],
     this.allNotesState = RequestState.loading ,
+
+    this.allToDoListData = const [],
+    this.allToDoState = RequestState.loading ,
   });
 
   AdminNotesStates copyWith({
@@ -25,13 +38,23 @@ class AdminNotesStates extends Equatable {
 
     List<AllNotesModel> ? allNotesData ,
     RequestState ? allNotesState ,
+
+    List<AllToDoListModel> ? allToDoListData ,
+    RequestState ? allToDoState ,
+
+    bool? showAddNoteScreen,
   }) {
     return AdminNotesStates(addNoteState: addNoteState ?? this.addNoteState,
         allNotesData : allNotesData ?? this.allNotesData ,
       allNotesState: allNotesState ?? this.allNotesState ,
+      showAddNoteScreen: showAddNoteScreen ?? this.showAddNoteScreen,
+
+      allToDoListData : allToDoListData ?? this.allToDoListData ,
+      allToDoState: allToDoState ?? this.allToDoState ,
+
     );
     }
 
   @override
-  List<Object?> get props => [addNoteState , allNotesData, allNotesState ];
+  List<Object?> get props => [addNoteState , allNotesData, allNotesState,showAddNoteScreen ,allToDoListData ,allToDoState];
 }

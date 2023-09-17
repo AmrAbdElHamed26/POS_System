@@ -10,22 +10,22 @@ import '../controller/admin_notes_states.dart';
 import 'notes_table.dart';
 
 class AllNotes extends StatelessWidget {
-  const AllNotes({Key? key , required this.screenSize}) : super(key: key);
+  AllNotes({Key? key , required this.screenSize , required this.nameOfRow}) : super(key: key);
 
-  final  Size screenSize;
-
+  final Size screenSize;
+  final String nameOfRow ;
   @override
   Widget build(BuildContext context) {
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(width: 12,),
+            const SizedBox(width: 4,),
             Text(
-              "Pinned",
-              style: TextStyle(
+              nameOfRow,
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -33,34 +33,23 @@ class AllNotes extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 30,
+          height: 8,
         ),
         SizedBox(
-          width: screenSize.width * 0.8, // 80% of screen width
-          height: screenSize.height * 0.33, // 40% of screen height
+          width: screenSize.width * 0.8,
+          height: screenSize.height * 0.33,
           child: BlocBuilder<AdminNotesBloc,AdminNotesStates>(
             builder: (BuildContext context , AdminNotesStates state){
-              switch(state.allNotesState){
-
-                case RequestState.loading:
-                  return Center(child: CircularProgressIndicator());
-                case RequestState.loaded:
-                return ListView.builder(
-                  physics: const ClampingScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) =>
-                      NotesTable(allNotes: state.allNotesData[index]),
-                  itemCount: state.allNotesData.length,
-                  scrollDirection: Axis.horizontal,
-                );
-                case RequestState.error:
-                  return Center(child: CircularProgressIndicator());
-
-              }
+              return ListView.builder(
+                physics: const ClampingScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) =>
+                    NotesTable(allNotes: adminScreenData.allNotesData[index]),
+                itemCount: adminScreenData.allNotesData.length,
+                scrollDirection: Axis.horizontal,
+              );
             },
           ),
         ),
-        const SizedBox(height: 15,),
-        const Text("Today" , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 20),),
       ],
     );
   }

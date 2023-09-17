@@ -15,12 +15,12 @@ class AdminScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocProvider(
-        create: (BuildContext context) => getIt<AdminBloc>(),
+        create: (BuildContext context) => getIt<AdminBloc>()..add(const ChangePageEvent(pageNumber: 0)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AdminNavigationBar(),
+            const AdminNavigationBar(),
             Expanded(
               flex: 16,
               child: BlocBuilder<AdminBloc, AdminStates>(

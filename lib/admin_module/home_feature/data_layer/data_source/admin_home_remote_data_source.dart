@@ -72,7 +72,7 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
   Future<List<AllToDoListModel>> getAllToDo() async {
 
     if(adminScreenData.allQuickToDoListChanges == true){
-      final result = await FireStoreFunctions().getAllToDoService(userDocumentId: "AJn92NJE9hh8XUnzRtda");
+      final result = await FireStoreFunctions().getAllQuickToDoService(userDocumentId: "AJn92NJE9hh8XUnzRtda");
       adminScreenData.setAllQuickToDoListData =  List<AllToDoListModel>.from(result);
       adminScreenData.setAllQuickToDoListChanges(false);
       return result;
