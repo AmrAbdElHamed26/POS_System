@@ -15,7 +15,7 @@ class ServicesLocator {
         ///blocs
         getIt.registerFactory(() => AdminHomeBloc(getIt() , getIt() , getIt()));
 
-        ///DATA SOURCE
+        ///Remote DATA SOURCE
         getIt.registerLazySingleton<BaseAdminHomeRemoteDataSource>(() =>AdminHomeRemoteDataSource() );
 
         ///REPOSITORY

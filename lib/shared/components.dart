@@ -21,7 +21,7 @@ Widget customizedTextFormField(
         decoration:
         InputDecoration(
 
-            border: OutlineInputBorder(
+            border: const OutlineInputBorder(
               borderSide: BorderSide.none,
             ),
             hintText: hintText,
@@ -39,47 +39,44 @@ Widget customizedTextFormField(
         obscureText: secure,
       ),
 );
-class customizedButton extends StatelessWidget {
-  String text;
+class CustomizedButton extends StatelessWidget {
+  Widget text;
   void Function()? onPressed;
-  customizedButton({
+  double height;
+  double? width;
+  CustomizedButton({
     required this.text,
     required this.onPressed,
+    this.height=60,
+    this.width,
 });
 
   @override
   Widget build(BuildContext context) {
-      return SizedBox(
-          width: MediaQuery.sizeOf(context).width,
-    height: 60,
-    child:   Material(
-    elevation: 10.0,
-    shadowColor: Colors.grey[200],
-    color: Colors.black,
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(10),
-    side: const BorderSide(color: Colors.transparent, ),
-    ),
-    child:   TextButton(
-    onPressed:onPressed ,
-    child:  Text(
-        text,
-        style: TextStyle(
-        color: Colors.white,
-        fontSize: 17,
-         ),
-
+      return GestureDetector(
+        onTap:onPressed ,
+        child: SizedBox(
+          width: width??MediaQuery.sizeOf(context).width,
+          height: height,
+          child:   Material(
+              elevation: 10.0,
+              shadowColor: Colors.grey[200],
+              color: Colors.black,
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: const BorderSide(color: Colors.transparent, ),
+          ),
+          child:   text,
         ),
-       ),
-      ),
-     );
+     ),
+      );
   }
 }
 
-class googleButton extends StatelessWidget {
-  void Function()? onPressed;
+class GoogleButton extends StatelessWidget {
+  final void Function()? onPressed;
 
-  googleButton(this.onPressed);
+  const GoogleButton(this.onPressed, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +93,7 @@ class googleButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             side: const BorderSide(color: Colors.transparent, ),
           ),
-          child:   Row(
+          child:  const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(
@@ -119,13 +116,13 @@ class googleButton extends StatelessWidget {
     );
   }
 }
-class customizedAppBar extends StatelessWidget {
-  const customizedAppBar({Key? key}) : super(key: key);
+class CustomizedAppBar extends StatelessWidget {
+  const CustomizedAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return  Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.white,
           boxShadow: [
             BoxShadow(
@@ -139,7 +136,7 @@ class customizedAppBar extends StatelessWidget {
         child: Row(
 
           children: [
-            Text(
+            const Text(
               'POS System',
               style: TextStyle(
                 fontSize: 20,
@@ -154,7 +151,7 @@ class customizedAppBar extends StatelessWidget {
               onTap: (){
 
               },
-              child: Text(
+              child: const Text(
                 'Home',
                 style: TextStyle(
                   fontSize: 18,
@@ -167,7 +164,7 @@ class customizedAppBar extends StatelessWidget {
             ),
             GestureDetector(
               onTap: (){},
-              child: Text(
+              child: const Text(
                 'Help',
                 style: TextStyle(
                   fontSize: 18,
@@ -180,7 +177,7 @@ class customizedAppBar extends StatelessWidget {
             ),
             GestureDetector(
               onTap: (){},
-              child: Text(
+              child: const Text(
                 'Payment',
                 style: TextStyle(
                   fontSize: 18,
@@ -193,7 +190,7 @@ class customizedAppBar extends StatelessWidget {
             ),
             GestureDetector(
               onTap: (){},
-              child: Text(
+              child: const Text(
                 'Sign in',
                 style: TextStyle(
                   fontSize: 18,
@@ -206,7 +203,7 @@ class customizedAppBar extends StatelessWidget {
             ),
             GestureDetector(
               onTap: (){},
-              child: Text(
+              child: const Text(
                 'Register',
                 style: TextStyle(
                   fontSize: 18,
