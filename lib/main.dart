@@ -22,7 +22,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  //await CacheHelper.init();
+  await CacheHelper.init();
 
   runApp(const MyApp());
 }

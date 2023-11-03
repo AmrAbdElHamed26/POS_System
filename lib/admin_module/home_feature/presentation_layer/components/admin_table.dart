@@ -70,7 +70,6 @@ class AdminTable extends StatelessWidget {
                     onTap: () {
                       // Add your code to add a note to Firestore here
                       // Example:
-                      FireStoreServices().addNote("hello world");
                     },
                     child: Icon(
                       Icons.add,
