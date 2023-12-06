@@ -5,7 +5,12 @@ abstract class BaseAdminMenuRepo {
     required String categoryPrice,
   });
 
-  void addNewCategory();
+  void addNewCategory({
+  required String categoryName,
+    required String categoryItem,
+    required int categoryPrice,
+    required String restaurantId,
+  });
 
   void deleteItem();
 

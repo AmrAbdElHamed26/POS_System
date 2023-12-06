@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_bloc.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_states.dart';
 
+import '../../../../shared/enums.dart';
+
 class HeaderOfAdminHome extends StatelessWidget {
   const HeaderOfAdminHome({Key? key, required this.screenWidth})
       : super(key: key);
@@ -29,6 +31,8 @@ class HeaderOfAdminHome extends StatelessWidget {
                         fontSize: 15, color: Colors.black.withOpacity(.6)),
                   );
                 case RequestState.error:
+                  return const CircularProgressIndicator();
+                case RequestState.initial:
                   return const CircularProgressIndicator();
               }
             }),

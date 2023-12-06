@@ -1,18 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_bloc.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_states.dart';
-
-import '../../../../services/fire_store_services.dart';
+import '../../../../shared/enums.dart';
 
 class AdminTable extends StatelessWidget {
   final IconData currentIcon;
   final List<String> data;
   final String tableName;
   final bool additionState;
-  final numberOftable;
+  final numberOfTable;
 
   const AdminTable({
     Key? key,
@@ -20,7 +17,7 @@ class AdminTable extends StatelessWidget {
     required this.data,
     required this.tableName,
     required this.additionState,
-    required this.numberOftable,
+    required this.numberOfTable,
   }) : super(key: key);
 
   @override
@@ -95,7 +92,7 @@ class AdminTable extends StatelessWidget {
             buildWhen: (previous, current) =>
             previous.allNotesState != current.allNotesState,
             builder: (BuildContext context, AdminHomeStates state) {
-              if (numberOftable == 1 || numberOftable == 2) {
+              if (numberOfTable == 1 || numberOfTable == 2) {
                 switch (state.allNotesState) {
                   case RequestState.loading:
                     return const Center(child: CircularProgressIndicator());
@@ -137,6 +134,8 @@ class AdminTable extends StatelessWidget {
                     );
                   case RequestState.error:
                     return const Center(child: CircularProgressIndicator());
+                  case RequestState.initial:
+                    return const Center(child: CircularProgressIndicator());
                 }
               } else {
                 switch (state.allNotesState) {
@@ -168,6 +167,8 @@ class AdminTable extends StatelessWidget {
                       ),
                     );
                   case RequestState.error:
+                    return const Center(child: CircularProgressIndicator());
+                  case RequestState.initial:
                     return const Center(child: CircularProgressIndicator());
                 }
               }
