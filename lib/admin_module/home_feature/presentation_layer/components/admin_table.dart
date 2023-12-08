@@ -1,12 +1,18 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_bloc.dart';
 import 'package:side_proj/admin_module/home_feature/presentation_layer/controller/admin_home_states.dart';
+import '../../../../shared/enums.dart';
+
 
 class AdminTable extends StatelessWidget {
   final IconData currentIcon;
   final String tableName;
+  final bool additionState;
+  final numberOfTable;
+
   final bool iconState;
   final int numberOfTable;
 
@@ -14,6 +20,7 @@ class AdminTable extends StatelessWidget {
     Key? key,
     required this.currentIcon,
     required this.tableName,
+    required this.additionState,
     required this.iconState,
     required this.numberOfTable,
   }) : super(key: key);
@@ -96,6 +103,8 @@ class AdminTable extends StatelessWidget {
               }
             },
             builder: (BuildContext context, AdminHomeStates state) {
+              if (numberOfTable == 1 || numberOfTable == 2) {
+
               if (numberOfTable == 1) {
                 switch (state.allNotesState) {
                   case RequestState.loading:
@@ -137,6 +146,8 @@ class AdminTable extends StatelessWidget {
                       ),
                     );
                   case RequestState.error:
+                    return const Center(child: CircularProgressIndicator());
+                  case RequestState.initial:
                     return const Center(child: CircularProgressIndicator());
                 }
               } else if (numberOfTable == 2) {
@@ -180,6 +191,8 @@ class AdminTable extends StatelessWidget {
                       ),
                     );
                   case RequestState.error:
+                    return const Center(child: CircularProgressIndicator());
+                  case RequestState.initial:
                     return const Center(child: CircularProgressIndicator());
                 }
               } else {

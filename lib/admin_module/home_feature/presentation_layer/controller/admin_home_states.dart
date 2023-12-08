@@ -1,13 +1,10 @@
 import 'package:equatable/equatable.dart';
 
+import '../../../../shared/enums.dart';
 import '../../data_layer/models/all_notes_model.dart';
 import '../../data_layer/models/all_to_do_list_model.dart';
 
-enum RequestState {
-  loading,
-  loaded,
-  error,
-}
+
 
 class AdminHomeStates extends Equatable {
   /// time and date data

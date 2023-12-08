@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:side_proj/features/register/data/register_local_data_source.dart';
 import 'package:side_proj/features/register/data/register_remote_data_source.dart';
 import 'package:side_proj/features/register/domain/repos/RegisterRepoImp.dart';
 import 'package:side_proj/shared/components.dart';
@@ -27,7 +26,7 @@ class _RegisterScreenImplState extends State<RegisterScreenImpl> {
     return Scaffold(
       body: Column(
         children: [
-          customizedAppBar(),
+          CustomizedAppBar(),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -94,8 +93,14 @@ class _RegisterScreenImplState extends State<RegisterScreenImpl> {
                       SizedBox(
                         height: 25,
                       ),
-                      customizedButton(
-                          text: 'Sign up',
+                      CustomizedButton(
+                          text: Text(
+                            'Sign up',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                            ),
+                          ),
                           onPressed:(){
                             // save Data in fireStore
                             registerRemoteDataSourceImpl.createUser(

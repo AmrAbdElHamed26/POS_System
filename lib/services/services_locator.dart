@@ -32,7 +32,7 @@ class ServicesLocator {
         getIt.registerFactory(() => AdminBloc());
         getIt.registerFactory<AdminNotesBloc>(()=>AdminNotesBloc(getIt() , getIt(), getIt()));
 
-        ///DATA SOURCE
+        ///Remote DATA SOURCE
         getIt.registerLazySingleton<BaseAdminHomeRemoteDataSource>(() =>AdminHomeRemoteDataSource() );
 
         getIt.registerLazySingleton<BaseAdminNotesRemoteDataSource>(() =>AdminNotesRemoteDataSource() );

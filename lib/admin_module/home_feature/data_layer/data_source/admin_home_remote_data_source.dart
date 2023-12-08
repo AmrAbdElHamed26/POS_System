@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:side_proj/admin_module/home_feature/data_layer/models/all_to_do_list_model.dart';
 import 'package:side_proj/constants/months.dart';
@@ -41,7 +43,7 @@ class AdminHomeRemoteDataSource extends BaseAdminHomeRemoteDataSource {
       return formattedDateTime;
     } catch (e) {
       // Handle any potential errors here
-      print("Error: $e");
+      log("Error: $e");
       return "Error occurred while fetching date and time.";
     }
   }

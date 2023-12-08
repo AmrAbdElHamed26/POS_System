@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:side_proj/admin_module/adminStaff/domain/repos/admin_staff_repo_impl.dart';
 
 import '../../../../shared/components.dart';
 
 class AddTeamMemberTable extends StatefulWidget {
+  const AddTeamMemberTable({super.key});
+
 
   @override
   State<AddTeamMemberTable> createState() => _AddTeamMemberTableState();
@@ -12,25 +13,24 @@ class AddTeamMemberTable extends StatefulWidget {
 
 class _AddTeamMemberTableState extends State<AddTeamMemberTable> {
 
-  TextEditingController emailController= new TextEditingController();
-  TextEditingController passwordController= new TextEditingController();
+  TextEditingController emailController=  TextEditingController();
+  TextEditingController passwordController=  TextEditingController();
   String roleDropdownValue = 'Admin';
   bool visibility= true;
   AdminStaffRepoImpl adminStaffRepoImpl=AdminStaffRepoImpl();
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
       width: 970,
       height: 210,
       decoration: ShapeDecoration(
-        color: Color(0xFFF7F7F7),
+        color:const Color(0xFFF7F7F7),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        shadows: [
-          BoxShadow(
-            color: Color(0x3F000000),
+        shadows:const [
+           BoxShadow(
+            color:  Color(0x3F000000),
             blurRadius: 4,
             offset: Offset(0, 4),
             spreadRadius: 0,
@@ -41,7 +41,7 @@ class _AddTeamMemberTableState extends State<AddTeamMemberTable> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Row(
+            const Row(
               children: [
                 Text(
                   'Email',
@@ -81,7 +81,7 @@ class _AddTeamMemberTableState extends State<AddTeamMemberTable> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -89,28 +89,28 @@ class _AddTeamMemberTableState extends State<AddTeamMemberTable> {
                   SizedBox(
                     width: 300,
                     child: customizedTextFormField(
-                      pre: Icon(Icons.email_outlined),
+                      pre:const Icon(Icons.email_outlined),
                         hintText: 'email@gmail.com',
                         textInputType: TextInputType.emailAddress,
                         textEditingController:emailController,
                     ),
                   ),
-                  SizedBox(width: 15,),
+                  const SizedBox(width: 15,),
                   SizedBox(
                     width:300 ,
                     child: customizedTextFormField(
-                      pre: Icon(
+                      pre: const Icon(
                           Icons.lock_outlined,
                           color: Colors.grey,
                       ),
                         textEditingController: passwordController,
                         hintText: 'Password',
                         textInputType: TextInputType.visiblePassword,
-                        suffix: visibility?Icon(
+                        suffix: visibility?const Icon(
                           Icons.visibility_outlined,
                           color: Colors.grey,
                         )
-                            :Icon(
+                            :const Icon(
                           Icons.visibility_off_outlined,
                           color: Colors.grey,
                         ),
@@ -122,7 +122,7 @@ class _AddTeamMemberTableState extends State<AddTeamMemberTable> {
                         }
                     ),
                   ),
-                  SizedBox(width: 15,),
+                  const SizedBox(width: 15,),
                   SizedBox(
                     width:300 ,
                     child:Material(
@@ -133,7 +133,7 @@ class _AddTeamMemberTableState extends State<AddTeamMemberTable> {
                         side: const BorderSide(color: Colors.transparent, ),
                       ),
                       child: DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
+                        decoration:const InputDecoration(
                           border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                           ),
@@ -145,7 +145,7 @@ class _AddTeamMemberTableState extends State<AddTeamMemberTable> {
                           value: value,
                           child: Text(
                               value,
-                              style:TextStyle(
+                              style:const TextStyle(
                                 color: Colors.black,
                                 fontSize: 12,
                                 fontFamily: 'Poppins',
@@ -166,17 +166,35 @@ class _AddTeamMemberTableState extends State<AddTeamMemberTable> {
                         ),
                 ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               children: [
-                Spacer(),
+                const Spacer(),
                 SizedBox(
                   width: 140,
                   height: 50,
-                  child: customizedButton(
-                      text: '+ Add',
+                  child: CustomizedButton(
+                      text:
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 15,
+                          ),
+                          SizedBox(
+                            width: 3,
+                          ),
+                          Text(
+                              'Add',
+                            style: TextStyle(color: Colors.white, fontSize: 8),
+                          ),
+                        ],
+                      ),
+
                       onPressed: (){
                         adminStaffRepoImpl.addMember(
                             email: emailController.text,
@@ -186,7 +204,7 @@ class _AddTeamMemberTableState extends State<AddTeamMemberTable> {
                         emailController.clear();
                         passwordController.clear();
                         setState(() {
-                          roleDropdownValue = 'Admin'!;
+                          roleDropdownValue = 'Admin';
                         });
                       }
                   ),
