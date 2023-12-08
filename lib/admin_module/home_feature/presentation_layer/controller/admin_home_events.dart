@@ -11,4 +11,6 @@ class GetTimeAndDateUsingTimeStampEvent extends AdminHomeEvents {}
 
 class GetUserNameEvent extends AdminHomeEvents {}
 
-class GetAllNotesEvent extends AdminHomeEvents{}
+class GetAllQuickNotesEvent extends AdminHomeEvents{}
+
+class GetAllQuickToDoListEvent extends AdminHomeEvents{}

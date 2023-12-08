@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../shared/enums.dart';
 import '../../data_layer/models/all_notes_model.dart';
+import '../../data_layer/models/all_to_do_list_model.dart';
 
 
 
@@ -18,6 +19,10 @@ class AdminHomeStates extends Equatable {
   final List<AllNotesModel> allNotesData ;
   final RequestState allNotesState ;
 
+  /// all to do list data
+  final List<AllToDoListModel> allTodDoList;
+  final RequestState allToDoListState;
+
   /// constructor
   const AdminHomeStates({
     this.timeAndDate = "",
@@ -27,6 +32,9 @@ class AdminHomeStates extends Equatable {
 
     this.allNotesData = const [] ,
     this.allNotesState = RequestState.loading,
+
+    this.allTodDoList = const [],
+    this.allToDoListState = RequestState.loading
   });
 
   /// copy with to avoid remove data from previous states
@@ -39,6 +47,9 @@ class AdminHomeStates extends Equatable {
     List<AllNotesModel>? allNotesData,
     RequestState? allNotesState ,
 
+    List<AllToDoListModel> ? allTodDoList ,
+    RequestState ? allToDoListState ,
+
   }) {
     return AdminHomeStates(
       timeAndDate: timeAndDate ?? this.timeAndDate,
@@ -49,6 +60,8 @@ class AdminHomeStates extends Equatable {
       allNotesData : allNotesData ?? this.allNotesData,
       allNotesState: allNotesState?? this.allNotesState,
 
+      allTodDoList: allTodDoList ?? this.allTodDoList ,
+      allToDoListState: allToDoListState ?? this.allToDoListState,
 
     );
   }
@@ -56,5 +69,5 @@ class AdminHomeStates extends Equatable {
   /// from equatable class to save memory
   @override
   List<Object?> get props =>
-      [timeAndDate, timeAndDateStates, userName, userNameStates , allNotesData ,allNotesState];
+      [timeAndDate, timeAndDateStates, userName, userNameStates , allNotesData ,allNotesState , allTodDoList , allToDoListState];
 }
