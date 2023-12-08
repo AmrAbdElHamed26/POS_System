@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'admin_table.dart';
 
 class AdminHomeAllTables extends StatelessWidget {
@@ -17,20 +18,27 @@ class AdminHomeAllTables extends StatelessWidget {
                 tableName: "Quick Notes",
                 iconState: true,
               numberOfTable: 1,
+                additionState: false,
             ),
-            SizedBox(
+             SizedBox(
               width: 15,
             ),
             AdminTable(
                 currentIcon: Icons.timer_outlined,
                 tableName: "Current Orders",
-                iconState: true,
-            numberOfTable: 2,),
-            SizedBox(
+                additionState: false,
+            numberOfTable: 2, iconState: true,),
+             SizedBox(
               width: 15,
             ),
             AdminTable(
+                numberOfTable: 3,
+                currentIcon: Icons.table_restaurant_outlined,
+                tableName: "Tables",
+                additionState: false, iconState: true,),
+            AdminTable(
               numberOfTable: 3,
+                additionState: false,
                 currentIcon: Icons.table_restaurant_outlined,
                 tableName: "To Do List",
                 iconState: true),
